@@ -17,9 +17,10 @@
 }
 .todoContainer{
     width : 29%;
-    height: 500px;
+    height: 850px;
     float : left;
     overflow : auto;
+    border:  1px solid;
 
 }
 .todoContainer::-webkit-scrollbar{

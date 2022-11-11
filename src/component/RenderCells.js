@@ -2,7 +2,7 @@ import { startOfMonth, endOfMonth, startOfWeek, endOfWeek } from 'date-fns';
 import { isSameMonth, isSameDay, addDays, parse, format } from 'date-fns';
 import MyModal from "./MyModal";
 import { useState } from "react";
-export const RenderCells = ({ currentMonth, selectedDate, onDateClick,setShow,show,setCalenderWidth,setTabWidth }) => {
+export const RenderCells = ({ currentMonth, selectedDate, onDateClick,setShow,show,setTabWidth,todoList,setTodoList }) => {
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(monthStart);
     const startDate = startOfWeek(monthStart);
@@ -43,9 +43,8 @@ export const RenderCells = ({ currentMonth, selectedDate, onDateClick,setShow,sh
                     }`}
                     key={day}
                     onClick={() => {
-                        setShow(!show)
-                        !show ? setCalenderWidth("70%") : setCalenderWidth("100%")
-                        !show ? setTabWidth("29%") : setTabWidth("0%")
+                        setShow(true)
+                        show ? setTabWidth("29%") : setTabWidth("0%")
                         isOpen ?  console.log(null) :handleClick()
                         isOpen ?  console.log(null) : onDateClick(cloneDay)}
                     }
@@ -77,9 +76,11 @@ export const RenderCells = ({ currentMonth, selectedDate, onDateClick,setShow,sh
                     {rows}
                     {isOpen ? <MyModal
                        isOpen={isOpen}
-                       // onSubmit={handleClickSubmit}
-                       // onCancel={handleClickCancel}
+                        onSubmit={handleClickSubmit}
+                        onCancel={handleClickCancel}
                        setOpen={setOpen}
+                       todoList={todoList}
+                       setTodoList={setTodoList}
                     /> : null}
                     </div>);
 };

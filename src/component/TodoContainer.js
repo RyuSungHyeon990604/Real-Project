@@ -3,7 +3,7 @@ import Todo from "./Todo";
 import "./todoTable.css"
 function TodoContainer({todoList}){
     return(
-        <div className="todoContainer">
+        <div className="todoContainer" >
             {todoList.map(context=>
                 <Todo context={context}/>
             )}

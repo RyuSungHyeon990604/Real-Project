@@ -24,7 +24,7 @@ export const Calender = () => {
     const onDateClick = (day) => {
         setSelectedDate(day);
     };
-    const [calenderWidth,setCalenderWidth]=useState("100%")
+    
     const [tabWidth,setTabWidth] =useState("0%")
     const [show,setShow]=useState(false)
 
@@ -34,118 +34,14 @@ export const Calender = () => {
         day : "3",
         startTime : "1900",
         endTime : "2000",
+        title : "시험",
         todo : "웹프레임워크 프로젝트d"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1400",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1400",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1800",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1300",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
-      },{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1200",
-        endTime : "1900",
-        todo : "네프 프로젝트"
       }
     ])
 
     return (
         <>
-        <div className="calendar" style={{width:calenderWidth,float:"left"}}>
+        <div className="calendar" style={{width: show ? "70%" : "100%", float:"left"}}>
             <RenderHeader
                 currentMonth={currentMonth}
                 prevMonth={prevMonth}
@@ -158,8 +54,9 @@ export const Calender = () => {
                 onDateClick={onDateClick}
                 setShow={setShow}
                 show={show}
-                setCalenderWidth={setCalenderWidth}
                 setTabWidth={setTabWidth}
+                todoList={todoList}
+                setTodoList={setTodoList}
             />
              
 

@@ -8,11 +8,13 @@ function Todo({ context }) {
       <Table striped className="todoTable" onClick={()=>console.log(context)}>
         <tbody>
           <tr id="date">
-            <td>00~11</td>
+            <td>{context.title}  {context.startTime.substring(0,2)}:{context.startTime.substring(2,4)}~{context.endTime.substring(0,2)}:{context.endTime.substring(2,4)}</td>
           </tr>
           <tr>
             <td id="todo">{context.todo}</td>
           </tr>
+          
+          
         </tbody>
       </Table>
     </div>
