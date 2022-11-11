@@ -1,0 +1,27 @@
+#date{
+    font-size: 15px;
+}
+
+#todo{
+    
+    word-break: break-all;
+}
+.todoTable{
+    width: 80%;
+    margin-left: 5%;
+   
+}
+.todoTable :hover{
+    background-color: rgb(118, 120, 122);
+    color : white;
+}
+.todoContainer{
+    width : 29%;
+    height: 500px;
+    float : left;
+    overflow : auto;
+
+}
+.todoContainer::-webkit-scrollbar{
+    display: none;
+}
