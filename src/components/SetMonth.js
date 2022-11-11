@@ -2,10 +2,10 @@ import React from 'react';
 import { Icon } from '@iconify/react';
 import { format } from 'date-fns';
 
-export const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
+export const SetMonth = ({ currentMonth, prevMonth, nextMonth }) => {
     return (
-        <div className="header row">
-            <div className="col col-start">
+        <div className="header rows">
+            <div className="columns columns-start">
                 <span className="text">
                     {format(currentMonth, 'yyyy')}년
                     <span className="text month">
@@ -13,9 +13,9 @@ export const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
                     </span>
                 </span>
             </div>
-            <div className="col col-end">
-                <Icon icon="bi:arrow-left-circle-fill" onClick={prevMonth} />
-                <Icon icon="bi:arrow-right-circle-fill" onClick={nextMonth} />
+            <div className="columns columns-end">
+                <Icon icon="bi:chevron-left" onClick={prevMonth} />
+                <Icon icon="bi:chevron-right" onClick={nextMonth} />
             </div>
         </div>
     );

@@ -1,18 +1,17 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addMonths, subMonths } from 'date-fns';
-import { RenderHeader } from './RenderHeader.js'
-import { RenderDays } from './RenderDays.js';
-import { RenderCells } from './RenderCells.js';
-import '../style.css'
-import MyTab from '../MyTab';
+import { SetMonth } from './SetMonth'
+import { SetWeek } from './SetWeek';
+import { SetDays } from './SetDays';
+import '../assets/style.css'
+import MyTab from './MyTab';
 
 export const Calender = () => {
-
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
-    useEffect(()=>{
-        console.log(selectedDate)
-    },[selectedDate])
+    
+    useEffect(()=>{console.log(selectedDate)}, [selectedDate])
+
     const prevMonth = () => {
         setCurrentMonth(subMonths(currentMonth, 1));
     };
@@ -24,7 +23,8 @@ export const Calender = () => {
     const onDateClick = (day) => {
         setSelectedDate(day);
     };
-    
+
+    const [calenderWidth,setCalenderWidth]=useState("100%")
     const [tabWidth,setTabWidth] =useState("0%")
     const [show,setShow]=useState(false)
 
@@ -34,32 +34,31 @@ export const Calender = () => {
         day : "3",
         startTime : "1900",
         endTime : "2000",
-        title : "시험",
-        todo : "웹프레임워크 프로젝트d"
+        title : "제목",
+        todo : "웹프레임워크 프로젝트"
       }
     ])
 
     return (
         <>
-        <div className="calendar" style={{width: show ? "70%" : "100%", float:"left"}}>
-            <RenderHeader
+        <div className="calendar" style={{width:calenderWidth, float:"left",transition :".35s"}}>
+            <SetMonth
                 currentMonth={currentMonth}
                 prevMonth={prevMonth}
                 nextMonth={nextMonth}
             />
-            <RenderDays />
-            <RenderCells
+            <SetWeek />
+            <SetDays
                 currentMonth={currentMonth}
                 selectedDate={selectedDate}
                 onDateClick={onDateClick}
                 setShow={setShow}
                 show={show}
+                setCalenderWidth={setCalenderWidth}
                 setTabWidth={setTabWidth}
                 todoList={todoList}
                 setTodoList={setTodoList}
             />
-             
-
         </div>
         {show ? <MyTab todoList={todoList} width={tabWidth}/> : null}
         </>

@@ -1,11 +1,5 @@
-import { Calender } from "./component/Calendar";
+import { Calender } from "./components/Calendar";
 
-const App = () => {
-  return(
-    <main>
-    <Calender />
-    </main>
-  );
-  };
+const App = () => <Calender />
 
 export default App;

@@ -4,6 +4,7 @@
     height : 550px;
     overflow: auto;
 }
+
 .graphicContainer::-webkit-scrollbar{
     display: none;
 }

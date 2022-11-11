@@ -1,5 +1,5 @@
 import React from "react";
-import "./TodoGraphic.css"
+import "../assets/TodoGraphic.css"
 
 function TodoGraphic({todoList}){
     return(
@@ -7,8 +7,8 @@ function TodoGraphic({todoList}){
         {todoList.map(cur=>
             <div id='good' style={{border: "1px solid",height:`${cur.endTime-cur.startTime}px`,}}>{cur.startTime}</div>
         )}
-        
        </div>
     );
 }
+
 export default TodoGraphic;
