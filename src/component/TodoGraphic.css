@@ -1,9 +1,0 @@
-.graphicContainer{
-    float : left;
-    margin-left: 2%;
-    height : 550px;
-    overflow: auto;
-}
-.graphicContainer::-webkit-scrollbar{
-    display: none;
-}
