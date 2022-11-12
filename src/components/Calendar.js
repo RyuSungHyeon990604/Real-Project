@@ -28,16 +28,7 @@ export const Calender = () => {
     const [tabWidth,setTabWidth] =useState("0%")
     const [show,setShow]=useState(false)
 
-    const [todoList,setTodoList]=useState([{
-        year : "2022",
-        month : "11",
-        day : "3",
-        startTime : "1900",
-        endTime : "2000",
-        title : "제목",
-        todo : "웹프레임워크 프로젝트"
-      }
-    ])
+    const [todoList,setTodoList]=useState([])
 
     return (
         <>
@@ -60,7 +51,7 @@ export const Calender = () => {
                 setTodoList={setTodoList}
             />
         </div>
-        {show ? <MyTab todoList={todoList} width={tabWidth}/> : null}
+        {show && <MyTab todoList={todoList} width={tabWidth} day={selectedDate}/>}
         </>
     );
 };

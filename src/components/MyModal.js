@@ -1,10 +1,25 @@
-import ReactModal from "react-modal";
 import React, { useState } from "react";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
+import Col from 'react-bootstrap/Col';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import {
+  getYear,
+  getMonth,
+  getDate,
+} from "date-fns";
+import "../assets/Modal.css";
 
-const MyModal = ({ isOpen, setOpen, todoList, setTodoList }) => {
-  const list = ["오후 01:00", "2", "3", "4", "5", "6"];
+const MyModal = ({ isOpen, setOpen, todoList, setTodoList,day }) => {
+
+  const list = [];
+  for(let i=0; i<48; i++){
+      let k = i/2;
+      k<10?
+      list.unshift(`${k%1>0?`0${k-0.5}`:`0${k}`} : ${i%2===0?'00':'30'}`):list.unshift(`${k%1>0?`${k-0.5}`:`${k}`} : ${i%2===0?'00':'30'}`)
+  }
+  let [title, settitle] = useState('');
+  let [context, setcontext] = useState('');
   const [stime, setstime] = useState("");
   const [etime, setetime] = useState("");
 
@@ -16,71 +31,88 @@ const MyModal = ({ isOpen, setOpen, todoList, setTodoList }) => {
     setetime(e.target.value);
   };
 
+console.log('day',)
   const [제목, 셋제목] = useState("");
   const [내용, 셋내용] = useState("");
+  
   const insertData = () => {
     let arr = [
       ...todoList,
       {
-        year: "2022",
-        day: "2",
-        startTime: "1800",
-        endTime: "2000",
-        title: 제목,
-        todo: 내용,
+        year: getYear(day),
+        month : getMonth(day),
+        day: getDate(day),
+        startTime: stime,
+        endTime: etime,
+        title: title,
+        todo: context,
       },
     ];
     arr = arr.sort((a, b) => Number(a.startTime) - Number(b.startTime));
     setTodoList(arr);
   };
+
   return (
-    <div
-      style={{
-        width: "600px",
-        height: "600px",
-        position: "absolute",
-        background: "white",
-      }}
-    >
-      <FloatingLabel controlId="floatingSelect" label="시작시간">
+    <div className="modalBackground">
+      <div className="modalContainer">
+          <div className="title">
+          <input type="text" placeholder= "일정제목" onChange={(e)=>{settitle(e.target.value);}}/>
+          </div>
+          <div className="header">
+          <Row>
+              <Col>
+              <FloatingLabel controlId="floatingSelect" label="시작시간">
         <Form.Select
           aria-label="Floating label select example"
           onChange={handleSelect}
-          style={{width : "150px",float: "left"}}
+          style={{float: "left"}}
           
         >
           {list.map((time) => (
-            <option value={time} key={time}>
+            <option value={time}>
               {time}
             </option>
           ))}
         </Form.Select>
       </FloatingLabel>
-
+      </Col>
+      <Col>
       <FloatingLabel controlId="floatingSelect" label="종료시간">
         <Form.Select
           aria-label="Floating label select example"
           onChange={handleSelect2}
-          style={{width : "150px",marginLeft:"100px"}}
-          
+          style={{float:"right"}}
         >
           {list.map((time) => (
-            <option value={time} key={time}>
+            <option value={time}>
               {time}
             </option>
           ))}
         </Form.Select>
       </FloatingLabel>
+      </Col>
+      </Row>
+      </div>
+
+      <div className="body">
+              
+      <Form.Group className="textarea" controlId="exampleForm.ControlTextarea1">
+        <Form.Control as="textarea" rows={3} onChange={(e)=>{setcontext(e.target.value);}}/>
+      </Form.Group>
       
-      <button
-        onClick={() => {
-          setOpen(!isOpen);
-        }}
-      >
-        확인
-      </button>
-      <button onClick={() => setOpen(!isOpen)}>취소</button>
-    </div>
+      </div>
+              <div className="footer">
+              <button onClick={()=> {
+                    setOpen(!isOpen)
+                    insertData()
+                    console.log(todoList)
+                }}>저장</button>
+                <button onClick={()=>setOpen(!isOpen)}>취소</button>
+                
+
+              </div>  
+            </div>
+        </div>
   );
 };
 

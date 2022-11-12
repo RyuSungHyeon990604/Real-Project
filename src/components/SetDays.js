@@ -45,10 +45,9 @@ export const SetDays = ({ currentMonth, selectedDate, onDateClick, setShow, show
                     }`}
                     key={day}
                     onClick={() => {
-                        setShow(!show)
-                        !show ? setCalenderWidth("70%") : setCalenderWidth("100%")
-                        !show ? setTabWidth("29%") : setTabWidth("0%")
-                        isOpen ?  console.log(null) :handleClick()
+                        setShow(true)
+                        setCalenderWidth("70%")
+                        isOpen ?  console.log(null) : handleClick()
                         isOpen ?  console.log(null) : onDateClick(cloneDay)}
                     }> 
                     <span
@@ -80,6 +79,7 @@ export const SetDays = ({ currentMonth, selectedDate, onDateClick, setShow, show
                        setOpen={setOpen}
                        todoList={todoList}
                        setTodoList={setTodoList}
+                       day={selectedDate}
                     /> : null}
                     </div>;
 };
