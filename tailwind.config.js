@@ -1,5 +1,6 @@
+/** @type {import('tailwindcss').Config} */
 const labelsClasses = [
-  "indigo",
+  "yellow",
   "gray",
   "green",
   "blue",
@@ -18,7 +19,6 @@ module.exports = {
       ...labelsClasses.map((lbl) => `text-${lbl}-400`)
     ],
   },
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
@@ -26,11 +26,14 @@ module.exports = {
       },
       gridTemplateColumns: {
         "1/5": "1fr 5fr"
+      },
+      height:{
+        'event-box-size' : '420px'
       }
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [],
 }

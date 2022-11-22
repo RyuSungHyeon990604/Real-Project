@@ -1,32 +1,29 @@
+import dayjs from "dayjs";
 import React from "react";
-
+import SideEventsList from "./SideEventsList";
 export default function SideEvent() {
-    const events = JSON.parse(localStorage.getItem('savedEvents'));
-
-    function convertDate(day) {
-        const data = new Date(day);
-        const year = data.getFullYear();
-        const month = data.getMonth() + 1;
-        const date = data.getDate();
-      
-        return `${year}.${month}.${date}`;
+  const events = JSON.parse(localStorage.getItem("savedEvents"));
+  //이벤트목록 오름차순으로 정렬
+  function sortEvent() {
+    let arr = [];
+    if (events) {
+      arr = events.sort(function (a, b) {
+        return a.day - b.day;
+      });
     }
+    return arr;
+  }
 
-    return(
+  return (
     <React.Fragment>
-      <p className="text-gray-500 font-bold mt-10">Events</p>
-      {events.map((evt, idx) => (
-        
-        <div
-            key={idx}
-            className={`p-1 mr-3 text-${evt.label}-400 rounded mb-1 truncate`}
-        >
-            <p className={`p-1 mr-3 text-gray-900 rounded mb-1`}>
-                {convertDate(evt.day)}</p><hr></hr>
-                To Do: {evt.title}<br></br>
-                Memo: {evt.description}
-        </div>
-        ))}
+      <p className="text-gray-500 font-bold mt-3">Events</p>
+      <div className="h-event-box-size overflow-auto">
+        {sortEvent().map((cur,i) => {
+            if(dayjs().valueOf() - 86400000 < cur.day){
+                return <SideEventsList event={cur} index={i}/>
+            }
+        })}
+      </div>
     </React.Fragment>
-    )
+  );
 }
