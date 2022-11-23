@@ -101,24 +101,24 @@ export default function CalendarHeader() {
         thema === 1  
           ? {
               backgroundImage: `url(${
-                process.env.PUBLIC_URL + "/img/spring.png"
+                process.env.PUBLIC_URL + "/img/spring2.jpg"
               })`,
             }
           : thema === 2
           ? {
               backgroundImage: `url(${
-                process.env.PUBLIC_URL + "/img/summer.png"
+                process.env.PUBLIC_URL + "/img/summer2.jpg"
               })`,
             }
           : thema === 3
           ? {
               backgroundImage: `url(${
-                process.env.PUBLIC_URL + "/img/fall.png"
+                process.env.PUBLIC_URL + "/img/fall2.jpg"
               })`,
             }
           : {
               backgroundImage: `url(${
-                process.env.PUBLIC_URL + "/img/winter.png"
+                process.env.PUBLIC_URL + "/img/winter2.jpg"
               })`,
             }  
       }
@@ -127,8 +127,31 @@ export default function CalendarHeader() {
       className="py-8 flex justify-center items-center bg-blue-300"
     >
       <img src={logo} alt="calendar" className="mr-3 w-30 h-12" />
-      <h1 className="mr-10 text-xl text-gray-500 fond-bold">Calendar</h1>
+      <h1 
+      style={
+        thema === 4  
+          ? {
+              color: `skyblue`,
+            }
+           : thema === 2
+          ? {
+              color: `grey`,
+            }
+          : {
+              color: `white`,
+            }  
+      }
+      className="mr-10 text-xl fond-bold">Calendar</h1>
       <button
+        style={
+        thema === 4  
+          ? {
+              color: `pink`,
+            }
+          : {
+              color: `black`,
+            }  
+        }
         onClick={() => {
           handleReset();
         }}
@@ -141,11 +164,39 @@ export default function CalendarHeader() {
           handlePrevMonth();
         }}
       >
-        <span className="material-icons-outlined cursor-pointer text-gray-600 mx-2 text-9xl">
+        <span
+          style={
+          thema === 4  
+            ? {
+                color: `skyblue`,
+              }
+              : thema === 2
+            ? {
+              color: `grey`,
+              }
+            : {
+                color: `white`,
+              }  
+          } 
+        className="material-icons-outlined cursor-pointer mx-2 text-9xl">
           chevron_left
         </span>
       </button>
-      <h2 className="mx-8 text-4xl text-gray-700 font-bold">
+      <h2 
+       style={
+        thema === 4  
+          ? {
+              color: `skyblue`,
+            }
+          : thema === 2
+          ? {
+              color: `grey`,
+            }
+          : {
+              color: `white`,
+            }  
+        }
+      className="mx-8 text-4xl font-bold">
         {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
       </h2>
       <button
@@ -153,7 +204,21 @@ export default function CalendarHeader() {
           handleNextMonth();
         }}
       >
-        <span className="material-icons-outlined cursor-pointer text-gray-600 mx-2 text-9xl">
+        <span 
+          style={
+          thema === 4  
+            ? {
+                color: `skyblue`,
+              }
+            : thema === 2
+            ? {
+                color: `grey`,
+              }
+            : {
+                color: `white`,
+              }  
+          }
+        className="material-icons-outlined cursor-pointer mx-2 text-9xl">
           chevron_right
         </span>
         {/* <div className=" text-black text-9xl">{monthIndex%12 +1}</div> */}
