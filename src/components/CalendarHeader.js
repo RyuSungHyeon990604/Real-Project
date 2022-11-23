@@ -5,54 +5,88 @@ import GlobalContext from "../context/GlobalContext";
 
 export default function CalendarHeader() {
   const { monthIndex, setMonthIndex } = useContext(GlobalContext);
-  
   const [thema, setthema] = useState(null);
-
+  
   useEffect(()=>{
-    switch ((monthIndex % 12) + 1) {
-      case 12:
-      case 1:
-      case 2:
-        setthema(4);
-        console.log(monthIndex);
-        break;
-      case 3:
-      case 4:
-      case 5:
-        setthema(1);
-        console.log(monthIndex);
-        break;
-      case 6:
-      case 7:
-      case 8:
-        setthema(2);
-        console.log(monthIndex);
-        break;
-      case 9:
-      case 10:
-      case 11:
-        setthema(3);
-        console.log(monthIndex);
-        break;
-      default:
-        break;
-    }})
+    if(((monthIndex%12) +1)<1){
+      switch ((monthIndex % 12) + 1) {
+        case -11:
+        case -10:
+        case 0:
+        case -1:
+          setthema(4);
+          break;
+        case -2:
+        case -3:
+          setthema(3);
+          break;
+        case -4:
+        case -5:
+        case -6:
+          setthema(2);
+          console.log(monthIndex);
+          break;
+        case -7:
+        case -8:
+        case -9:
+          setthema(1);
+          console.log(monthIndex);
+          break;
+        default:
+          break;
+      }
+
+    }
+    else{
+      switch ((monthIndex % 12) + 1) {
+        case 12:
+        case 11:
+        case 1:
+        case 2:
+          setthema(4);
+          console.log(monthIndex);
+          break;
+        case 3:
+        case 4:
+        case 5:
+          setthema(1);
+          console.log(monthIndex);
+          break;
+        case 6:
+        case 7:
+        case 8:
+          setthema(2);
+          console.log(monthIndex);
+          break;
+        case 9:
+        case 10:
+          setthema(3);
+          console.log(monthIndex);
+          break;
+        default:
+          break;
+      }
+    }
+    }
+   
+
+  )
 
   function handlePrevMonth() {
-    if(monthIndex===0){
-       setMonthIndex(monthIndex+11);
-    }
-    else{
+    // if(monthIndex===0){
+    //    setMonthIndex(monthIndex+11);
+    // }
+    // else{
       setMonthIndex(monthIndex - 1);
-    }
+    // }
   }
   function handleNextMonth() {
-    if(monthIndex===12){
-      setMonthIndex(monthIndex-11);
-    }
-    else{
+    // if(monthIndex===12){
+    //   setMonthIndex(monthIndex-11);
+    // }
+    // else{
       setMonthIndex(monthIndex + 1);
-    }
+    // }
   }
   function handleReset() {
     setMonthIndex(
@@ -61,7 +95,6 @@ export default function CalendarHeader() {
         : dayjs().month()
     );
   }
-
   return (
     <header
       style={
@@ -88,7 +121,9 @@ export default function CalendarHeader() {
                 process.env.PUBLIC_URL + "/img/winter.png"
               })`,
             }  
-      }      
+      }
+      //className={`py-8 flex justify-center items-center bg-blue-300 bg-theme_${thema}`}
+      
       className="py-8 flex justify-center items-center bg-blue-300"
     >
       <img src={logo} alt="calendar" className="mr-3 w-30 h-12" />
@@ -121,6 +156,7 @@ export default function CalendarHeader() {
         <span className="material-icons-outlined cursor-pointer text-gray-600 mx-2 text-9xl">
           chevron_right
         </span>
+        {/* <div className=" text-black text-9xl">{monthIndex%12 +1}</div> */}
       </button>
     </header>
   );
